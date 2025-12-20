@@ -1,0 +1,76 @@
+:root {
+  /* --------------------------------------
+      Brand Colors
+  -------------------------------------- */
+  --color-primary: #ff5da2;
+  --color-primary-light: #ff9acb;
+  --color-primary-soft: #ffc4e3;
+  --color-primary-dark: #e54888;
+
+  --color-bg: #fdfdfd;
+  --color-surface: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-text: #363636;
+
+  /* --------------------------------------
+      Utility Accent Colors
+  -------------------------------------- */
+  --color-success: #38c793;
+  --color-success-dark: #2e9e75;
+  --color-warning: #ffc55c;
+  --color-warning-dark: #dca348;
+  --color-danger: #ff5c6c;
+  --color-danger-dark: #e44153;
+  --color-info: #3b82f6;
+
+  /* --------------------------------------
+      Shadows
+  -------------------------------------- */
+  --shadow-xs: 0px 1px 2px rgba(0,0,0,0.06);
+  --shadow-sm: 0px 2px 6px rgba(0,0,0,0.08);
+  --shadow-md: 0px 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0px 10px 20px rgba(0,0,0,0.15);
+  --shadow-xl: 0px 25px 40px rgba(0,0,0,0.18);
+
+  /* --------------------------------------
+      Border Radius Scale
+  -------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-xl: 22px;
+  --radius-2xl: 30px;
+
+  /* --------------------------------------
+      Animation Durations
+  -------------------------------------- */
+  --anim-fast: 150ms;
+  --anim-normal: 300ms;
+  --anim-slow: 500ms;
+
+  /* --------------------------------------
+      Layout Spacing (optional)
+  -------------------------------------- */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* --------------------------------------
+      Gradients
+  -------------------------------------- */
+  --gradient-primary: linear-gradient(90deg, #ff5da2, #ff9acb, #ffc4e3);
+  --gradient-card: linear-gradient(135deg, rgba(255,93,162,0.14), rgba(255,156,203,0.06));
+}
+
+/* --------------------- Dark Mode --------------------- */
+.dark {
+  --color-bg: #0f0f11;
+  --color-surface: #1a1b1f;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-text: #e6e6e6;
+
+  --shadow-md: 0px 6px 16px rgba(0,0,0,0.45);
+  --shadow-lg: 0px 14px 28px rgba(0,0,0,0.55);
+}

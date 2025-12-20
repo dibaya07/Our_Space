@@ -1,0 +1,365 @@
+/* MainLayout.css
+   Sidebar (fixed left) + Topbar (inside main column, sticky) + Content below topbar
+*/
+
+/* -------- theme vars -------- */
+:root{
+  --bg: #0c0e12;
+  --text: #e6eef8;
+  --muted: rgba(148,163,184,0.65);
+  --accent-rgb: 236,72,153;
+
+  --sidebar-expanded-width: 260px;
+  --sidebar-collapsed-width: 56px;
+
+  --ui-ease: cubic-bezier(.22,.9,.3,1);
+}
+
+/* base */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(255,110,159,0.03), transparent),
+    var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* layout state classes (added by React) */
+.layout.sidebar-expanded { --sidebar-width: var(--sidebar-expanded-width); }
+.layout.sidebar-collapsed  { --sidebar-width: var(--sidebar-collapsed-width); }
+
+/* ---------- Left fixed sidebar (rail) ---------- */
+.sidebar-wrap {
+  position: fixed;
+  top: 0;                 /* full height left rail */
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  transition: width 260ms var(--ui-ease);
+  z-index: 1400;
+  background: linear-gradient(180deg, rgba(6,8,11,0.96), rgba(6,8,11,0.88));
+  overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 60px rgba(2,6,23,0.55);
+}
+
+/* collapsed narrow rail */
+.sidebar-wrap.sidebar--collapsed {
+  width: var(--sidebar-collapsed-width);
+  min-width: var(--sidebar-collapsed-width);
+}
+
+/* internal header inside rail */
+.sidebar-header { padding: 4px; border-bottom: 1px solid rgba(255,255,255,0.02);font-size: 28px; }
+.brand-block { display:flex; align-items:center; gap:30px; cursor:pointer; padding:12px; border-radius:10px; }
+.icon-tile { height:38px; width:38px; min-width:38px; border-radius:10px; display:grid; place-items:center; background: linear-gradient(135deg, rgba(var(--accent-rgb),0.12), rgba(99,102,241,0.06)); box-shadow:0 8px 28px rgba(2,6,23,0.6); color:#fff; }
+.brand-label { display:flex; flex-direction:column; }
+.brand-title-small{ margin:0; font-weight:600; font-size:22px }
+.brand-sub-small{ margin-left:13px; margin-top:8px; font-size:14px; color:var(--muted) }
+
+/* nav area */
+.sidebar-component { display:flex; flex-direction:column; height:100vh; }
+.nav { padding:12px; overflow:auto; flex:1; display:flex; flex-direction:column; gap:6px; }
+.nav-item { display:flex; align-items:center; gap:12px; padding:10px 12px; margin:0 6px; border-radius:12px; color:#cbd5e1; text-decoration:none; font-weight:500; transition: transform 120ms ease, background 150ms ease;}
+.nav-item:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.02); color: rgb(var(--accent-rgb)); }
+.nav-item.active{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); color: rgba(var(--accent-rgb),0.95); border:1px solid rgba(var(--accent-rgb),0.12); box-shadow:0 12px 30px rgba(var(--accent-rgb),0.04); }
+.tile-icon{ font-size:18px; }
+
+/* footer */
+.sidebar-footer{ padding:14px; border-top:1px solid rgba(255,255,255,0.02); display:flex; align-items:center; gap:12px; }
+.avatar{ height:34px; width:34px; border-radius:50%; display:grid; place-items:center; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.06)); border:1px solid rgba(255,255,255,0.03); color: rgba(var(--accent-rgb),0.9); font-weight:700; }
+.logout-btn{ background:transparent; border:1px solid rgba(255,255,255,0.03); padding:6px 10px; border-radius:8px; color:var(--text); cursor:pointer; }
+
+/* collapsed behavior: hide labels and center icons */
+.layout.sidebar-collapsed .brand-label,
+.layout.sidebar-collapsed .item-label,
+.layout.sidebar-collapsed .sidebar-footer { display: none !important; }
+.layout.sidebar-collapsed .nav-item { justify-content:center; padding-left:6px; padding-right:6px; }
+.layout.sidebar-collapsed .icon-tile { height:40px; width:40px; }
+
+/* ---------- RIGHT area (main column) ---------- */
+/* main-column sits to the right of the left fixed rail */
+.main-column{
+  margin-left: var(--sidebar-width);
+  transition: margin-left 260ms var(--ui-ease);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* if collapsed adjust margin-left */
+.layout.sidebar-collapsed .main-column{ margin-left: var(--sidebar-collapsed-width); }
+
+/* ---------- Topbar inside main-column (sticky) ---------- */
+/* IMPORTANT: topbar is NOT fixed to viewport left; it is sticky inside main-column */
+/* Fixed opaque topbar — replace all other .topbar rules with this */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  z-index: 2000; /* above sidebar & drawer */
+  background-color: rgba(6,8,11,0.98); /* solid dark, near-opaque */
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  backdrop-filter: none; /* no extra transparency */
+}
+
+/* shift when sidebar collapsed */
+.layout.sidebar-collapsed .topbar {
+  left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* Mobile override: when sidebar hidden topbar full width */
+@media (max-width: 767px) {
+  .topbar { left: 0 !important; width: 100% !important; }
+  .drawer { z-index: 2100; }
+  .drawer-panel { z-index: 2120; }
+}
+
+
+/* topbar internals */
+.topbar-left{ display:flex; align-items:center; gap:12px; }
+.topbar-brand{ display:flex; gap:12px; align-items:center; cursor:pointer; padding:6px 8px; border-radius:10px; }
+.brand-icon-small{ height:36px; width:36px; border-radius:8px; display:grid; place-items:center; background: linear-gradient(135deg, rgba(var(--accent-rgb),0.9), rgba(99,102,241,0.06)); font-size:18px; }
+.brand-text-small{ display:flex; flex-direction:column; }
+.desktop-welcome{ display:none; }
+@media(min-width:768px){
+  .desktop-welcome{ display:block; margin-left:8px;}
+  .welcome-text{ margin:0; font-weight:600; font-size:14px; color:#f3f7fb; }
+  .welcome-sub{ margin:0; color:var(--muted); font-size:12px; }
+}
+
+/* pill */
+.pill{ display:flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.03); color:#cbd5e1; font-size:12px; }
+
+/* ---------- Content area lies below the topbar inside main-column ---------- */
+.content {
+  padding: 20px;
+  min-height: calc(100vh - 64px);
+  background-image: radial-gradient(1200px 600px at 20% 10%, rgba(255,110,159,0.02), transparent);
+  overflow-y: auto;
+  flex:1;
+}
+.content-inner{ max-width:1200px; margin:0 auto; }
+
+/* ---------- Mobile: hide left rail & show drawer ---------- */
+.drawer{ display:none; }
+@media(max-width: 767px){
+  .sidebar-wrap{ display:none !important; width:0 !important; min-width:0 !important; }
+  .main-column{ margin-left:0 !important; }
+  .drawer{ display:block; position:fixed; inset:0; z-index:1600; }
+  .drawer:not(.drawer--open){ display:none; }
+  .drawer-overlay{ position:absolute; inset:0; background: rgba(0,0,0,0.48); z-index:1610;}
+  .drawer-panel{ position:absolute; left:0; top:0; bottom:0; width: var(--sidebar-expanded-width); max-width:92%; background: linear-gradient(180deg, rgba(6,8,11,0.98), rgba(6,8,11,0.95)); border-right:1px solid rgba(255,255,255,0.03); z-index:1620; overflow:auto; }
+}
+
+/* readonly banner aligns to main-area */
+.readonly-banner{ position: fixed; top: 64px; left: var(--sidebar-width); right:0; z-index:1500; display:flex; justify-content:center; pointer-events:none; }
+.readonly-pill{ pointer-events:auto; margin:10px; background: rgba(255,255,255,0.03); padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.02); color:var(--text); font-size:13px; }
+
+/* accessibility focus */
+.brand-block:focus, .topbar-brand:focus, .nav-item:focus { outline:2px solid rgba(var(--accent-rgb),0.12); outline-offset:3px; }
+
+/* small responsive tweaks */
+@media(max-width:480px){
+  .brand-title-small{ font-size:14px }
+  .brand-sub-small{ font-size:10px }
+  .content{ padding:12px }
+}
+.sidebar-wrap::-webkit-scrollbar,
+.sidebar-component::-webkit-scrollbar,
+.nav::-webkit-scrollbar {
+  width: 0px;
+}
+
+.sidebar-wrap,
+.sidebar-component,
+.nav {
+  scrollbar-width: none; /* Firefox */
+}
+/* tweakable topbar sizes */
+:root {
+  --topbar-height: 64px;   /* topbar height */
+  --topbar-gap: 16px;      /* extra space you want under topbar */
+  /* other vars... */
+}
+
+/* --------------------------
+   Fixed topbar (viewport)
+   -------------------------- */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  z-index: 2000;
+  background-color: rgba(6,8,11,0.98);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+
+/* shift when sidebar collapsed */
+.layout.sidebar-collapsed .topbar {
+  left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* mobile override */
+@media (max-width: 767px) {
+  .topbar { left: 0 !important; width: 100% !important; }
+}
+
+/* --------------------------
+   Main column spacing (content starts below fixed topbar + gap)
+   -------------------------- */
+/* Previously you used margin-left only; now add padding-top to create space under topbar */
+.main-column {
+  margin-left: var(--sidebar-width);
+  transition: margin-left 260ms var(--ui-ease);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* IMPORTANT: make room for the fixed topbar + an adjustable gap */
+  padding-top: calc(var(--topbar-height) + var(--topbar-gap));
+}
+
+/* Keep collapsing behavior consistent */
+.layout.sidebar-collapsed .main-column {
+  margin-left: var(--sidebar-collapsed-width);
+  padding-top: calc(var(--topbar-height) + var(--topbar-gap));
+}
+
+/* If you previously had .content min-height calc(100vh - 64px), update it (or remove it).
+   The content now naturally starts below the topbar because of .main-column padding-top. */
+.content {
+  padding: 20px;
+  min-height: calc(100vh - (var(--topbar-height) + var(--topbar-gap)));
+  background-image: radial-gradient(1200px 600px at 20% 10%, rgba(255,110,159,0.02), transparent);
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* readonly banner should also sit below topbar (with same offset) */
+.readonly-banner {
+  position: fixed;
+  top: calc(var(--topbar-height) + var(--topbar-gap));
+  left: var(--sidebar-width);
+  right: 0;
+  z-index: 2100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* when collapsed, keep banner aligned */
+.layout.sidebar-collapsed .readonly-banner {
+  left: var(--sidebar-collapsed-width);
+}
+/* Center welcome text in topbar */
+.desktop-welcome-center {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+
+/* Make topbar center content properly */
+.topbar-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Optional: slightly nicer spacing */
+.welcome-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.welcome-sub {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+/* ===============================
+   AUTH BUTTONS (Login / Register)
+================================ */
+
+.auth-btn {
+  appearance: none;
+  border: 1px solid rgba(236, 72, 153, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+/* Login = subtle */
+.auth-btn-login {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.auth-btn-login:hover {
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 0 14px rgba(236, 72, 153, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Register = highlighted (primary action) */
+.auth-btn-register {
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.9),
+    rgba(244, 114, 182, 0.9)
+  );
+  border: none;
+  box-shadow: 0 0 18px rgba(236, 72, 153, 0.45);
+}
+
+.auth-btn-register:hover {
+  box-shadow: 0 0 28px rgba(236, 72, 153, 0.65);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Focus (accessibility) */
+.auth-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.6);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .auth-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+}

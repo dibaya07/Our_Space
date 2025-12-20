@@ -1,0 +1,411 @@
+/* ===== PAGE BACKGROUND ===== */
+
+.analytics-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("/bg-couple-moon.jpg"); /* change path if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #ffe9ff;
+  display: flex;
+  justify-content: center;
+}
+
+.analytics-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at bottom,
+      rgba(255, 140, 140, 0.5),
+      transparent 55%
+    ),
+    linear-gradient(to top, rgba(4, 0, 24, 0.9), rgba(21, 5, 51, 0.85));
+  mix-blend-mode: multiply;
+}
+
+.analytics-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1000px;
+  padding: 32px 18px 40px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+
+.analytics-header {
+  margin-bottom: 18px;
+}
+
+.analytics-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 188, 245, 0.15);
+  border: 1px solid rgba(255, 204, 255, 0.7);
+  color: #ffd9ff;
+  margin-bottom: 10px;
+}
+
+.analytics-title {
+  font-size: 26px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 18px rgba(255, 182, 255, 0.35);
+}
+
+.analytics-subtitle {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* ===== TABS ===== */
+
+.analytics-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.analytics-tab-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 196, 255, 0.5);
+  background: rgba(8, 0, 30, 0.75);
+  color: #ffe2ff;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.analytics-tab-btn-active {
+  background: linear-gradient(90deg, #ff5bb6, #ff7b7c, #ffb56b);
+  box-shadow: 0 0 14px rgba(255, 152, 230, 0.9);
+  color: #fff;
+}
+
+.analytics-tab-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* ===== TAB CONTENT LAYOUT ===== */
+
+.analytics-tab-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.analytics-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.analytics-block {
+  width: 100%;
+}
+
+/* ===== BASE CARD ===== */
+
+.an-card {
+  background: rgba(15, 6, 40, 0.9);
+  border-radius: 22px;
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(255, 177, 244, 0.4);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  color: #ffe9ff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Card header */
+.an-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.an-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 11px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(255, 183, 255, 0.16);
+  border: 1px solid rgba(255, 208, 255, 0.8);
+  color: #ffdfff;
+}
+
+.an-subtitle {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* ===== FORMS ===== */
+
+.an-form {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.an-row {
+  display: flex;
+  gap: 12px;
+}
+
+.an-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.an-field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #ffd4ff;
+}
+
+.an-field input,
+.an-field textarea,
+.an-field select {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 184, 255, 0.4);
+  background: rgba(7, 0, 31, 0.8);
+  color: #fff;
+  padding: 9px 12px;
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.an-field textarea {
+  min-height: 60px;
+}
+
+.an-field input::placeholder,
+.an-field textarea::placeholder {
+  color: rgba(255, 220, 255, 0.6);
+}
+
+.an-field input:focus,
+.an-field textarea:focus,
+.an-field select:focus {
+  background: rgba(18, 5, 55, 0.95);
+  border-color: #ff91e4;
+  box-shadow: 0 0 0 1px rgba(255, 144, 228, 0.6);
+}
+
+/* Primary button */
+.an-primary-btn {
+  align-self: flex-end;
+  border-radius: 999px;
+  border: none;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #ff5bb6, #ff7b7c, #ffb56b);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(255, 120, 200, 0.7);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.an-primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(255, 140, 215, 0.95);
+  filter: brightness(1.04);
+}
+
+.an-primary-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* ===== EMPTY STATE ===== */
+
+.an-empty {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* ===== HABIT BAR CHART (used by alcohol & cigarette) ===== */
+
+.an-chart-bars {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 150px;
+}
+
+.an-bar-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.an-bar-wrapper {
+  flex: 1;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(255, 218, 255, 0.13);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.an-bar {
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ff5bb6, #ff7b7c);
+  box-shadow: 0 0 12px rgba(255, 140, 215, 0.9);
+  transition: height 0.35s ease;
+}
+
+/* cigarette-specific bar color */
+.an-bar-cig {
+  background: linear-gradient(180deg, #ffaa88, #ff7e5f);
+}
+
+.an-bar-label {
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.an-bar-value {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.an-chart-total {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.an-chart-total span {
+  font-weight: 600;
+  color: #ffb5f1;
+}
+
+/* ===== WEEK / MONTH TOGGLE (AlcoholAnalyticsChart) ===== */
+
+.an-range-toggle {
+  margin-top: 8px;
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(8, 0, 30, 0.85);
+  border: 1px solid rgba(255, 196, 255, 0.4);
+}
+
+.an-range-btn {
+  border: none;
+  background: none;
+  padding: 4px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #ffdfff;
+  border-radius: 999px;
+}
+
+.an-range-btn-active {
+  background: linear-gradient(90deg, #ff5bb6, #ff7b7c);
+  box-shadow: 0 0 10px rgba(255, 152, 230, 0.9);
+  color: #fff;
+}
+
+/* ===== CIGARETTE TREND TEXT ===== */
+
+.an-trend-text {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* ===== RELATIONSHIP BARS ===== */
+
+.an-rel-bars {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.an-rel-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.an-rel-label {
+  font-size: 12px;
+}
+
+.an-rel-track {
+  height: 16px;
+  border-radius: 999px;
+  background: rgba(255, 218, 255, 0.15);
+  overflow: hidden;
+}
+
+.an-rel-fill {
+  height: 100%;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(255, 140, 215, 0.9);
+}
+
+.an-rel-kiss {
+  background: linear-gradient(90deg, #ff5bb6, #ff7b7c);
+}
+
+.an-rel-hug {
+  background: linear-gradient(90deg, #7bb6ff, #a97bff);
+}
+
+.an-rel-meetup {
+  background: linear-gradient(90deg, #ffd56b, #ff9f6b);
+}
+
+.an-rel-value {
+  font-size: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 700px) {
+  .analytics-inner {
+    padding: 26px 14px 32px;
+  }
+
+  .an-row {
+    flex-direction: column;
+  }
+
+  .an-rel-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .an-rel-track {
+    width: 100%;
+  }
+
+  .an-rel-value {
+    justify-self: flex-end;
+  }
+}

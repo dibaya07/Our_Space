@@ -1,0 +1,346 @@
+/* ========= FULLSCREEN BACKGROUND ========= */
+
+.romantic-login-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-image: url("/bg-couple-moon.jpg"); /* put image in public & update path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Dark + gradient overlay for readability */
+.romantic-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at bottom,
+      rgba(255, 140, 140, 0.55),
+      transparent 55%
+    ),
+    linear-gradient(to top, rgba(4, 0, 24, 0.95), rgba(21, 5, 51, 0.85));
+  mix-blend-mode: multiply;
+}
+
+/* Main container */
+.romantic-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========= INTRO TEXT ========= */
+
+.romantic-intro {
+  color: #fbe6ff;
+}
+
+.romantic-title {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  text-shadow: 0 0 18px rgba(255, 182, 255, 0.35);
+}
+
+.romantic-title span {
+  color: #ff7bcf;
+}
+
+.romantic-tagline {
+  max-width: 420px;
+  font-size: 15px;
+  opacity: 0.88;
+}
+
+/* Centered intro for stacked register layout */
+.intro-centered {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.intro-centered .romantic-title {
+  font-size: 46px;
+}
+
+.intro-centered .romantic-tagline {
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========= GLASS CARD ========= */
+
+.romantic-card {
+  background: rgba(14, 6, 35, 0.6);
+  border-radius: 22px;
+  padding: 32px 28px 24px;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 165, 230, 0.25);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+  color: #ffe9ff;
+  display: flex;
+  flex-direction: column;
+  animation: cardIn 0.7s ease-out;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.card-subtitle {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* Big register card below intro text */
+.stacked-register {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 880px;
+}
+
+.big-register-card {
+  width: 100%;
+  max-width: 880px;
+  padding: 50px 44px 40px;
+  border-radius: 32px;
+  margin-top: 6px;
+}
+
+/* ========= FORM FIELDS ========= */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #ffd4ff;
+}
+
+.field input {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 184, 255, 0.4);
+  padding: 11px 12px;
+  font-size: 14px;
+  background: rgba(7, 0, 31, 0.7);
+  color: #fff;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.field input::placeholder {
+  color: rgba(255, 220, 255, 0.6);
+}
+
+.field input:focus {
+  background: rgba(18, 5, 55, 0.9);
+  border-color: #ff91e4;
+  box-shadow: 0 0 0 1px rgba(255, 144, 228, 0.6);
+}
+
+/* Bigger inputs for big card */
+.big-register-card .field input {
+  padding: 15px 18px;
+  font-size: 18px;
+  border-radius: 16px;
+}
+
+/* Two-column row (names) */
+.field-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.field-row .field {
+  flex: 1;
+}
+
+/* ========= BUTTON ========= */
+
+.primary-btn {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  padding: 11px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #ff5bb6, #ff7b7c, #ffb56b);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(255, 120, 200, 0.7);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.big-register-card .primary-btn {
+  font-size: 20px;
+  padding: 16px 0;
+  border-radius: 18px;
+  margin-top: 28px;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(255, 140, 215, 0.9);
+  filter: brightness(1.03);
+}
+
+.primary-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* ========= FOOTER ========= */
+
+.card-footer {
+  margin-top: 18px;
+  font-size: 13px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.link-accent {
+  color: #ff96ea;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link-accent:hover {
+  text-decoration: underline;
+}
+
+/* ========= AVATAR UPLOAD ========= */
+
+.avatar-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 10px 0 20px;
+  flex-wrap: wrap;
+}
+
+.avatar-block {
+  flex: 1 1 160px;
+  text-align: center;
+}
+
+.avatar-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+  border: 2px dashed rgba(255, 181, 249, 0.6);
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 192, 255, 0.35),
+    rgba(12, 0, 30, 0.8)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 16px rgba(255, 136, 230, 0.4);
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-emoji {
+  font-size: 32px;
+}
+
+.avatar-name-label {
+  font-size: 13px;
+  color: #ffd9ff;
+  margin-bottom: 4px;
+}
+
+.avatar-upload {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: rgba(255, 143, 214, 0.16);
+  border: 1px solid rgba(255, 173, 242, 0.7);
+  color: #ffe8ff;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.18s ease, transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.avatar-upload:hover {
+  background: rgba(255, 166, 241, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(255, 170, 244, 0.8);
+}
+
+.avatar-upload input {
+  display: none;
+}
+
+/* ========= RESPONSIVE ========= */
+
+@media (max-width: 900px) {
+  .romantic-content {
+    padding: 28px 18px;
+  }
+
+  .stacked-register {
+    max-width: 420px;
+  }
+
+  .intro-centered .romantic-title {
+    font-size: 34px;
+  }
+
+  .big-register-card {
+    padding: 36px 26px;
+  }
+
+  .field-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .avatar-row {
+    justify-content: center;
+  }
+}

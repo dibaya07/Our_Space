@@ -1,0 +1,362 @@
+/* ===============================
+   PAGE WRAPPER
+================================ */
+
+.memory-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(
+      circle at bottom,
+      rgba(255, 140, 140, 0.25),
+      transparent 60%
+    ),
+    linear-gradient(to top, #020617, #0b0f1f);
+  color: #f8fafc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.memory-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.2));
+}
+
+.memory-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 18px 60px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.memory-header {
+  margin-bottom: 26px;
+}
+
+.memory-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(236, 72, 153, 0.18);
+  border: 1px solid rgba(236, 72, 153, 0.45);
+  color: #ffd1ec;
+  margin-bottom: 8px;
+}
+
+.memory-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.memory-subtitle {
+  font-size: 14px;
+  color: #cbd5f5;
+  max-width: 640px;
+}
+
+/* ===============================
+   LAYOUT
+================================ */
+
+.memory-layout {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 20px;
+}
+
+.memory-left,
+.memory-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.memory-block {
+  width: 100%;
+}
+
+/* ===============================
+   CARD BASE
+================================ */
+
+.mb-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.mb-header {
+  margin-bottom: 12px;
+}
+
+.mb-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(236, 72, 153, 0.2);
+  border: 1px solid rgba(236, 72, 153, 0.45);
+  color: #ffd1ec;
+}
+
+.mb-subtitle {
+  font-size: 12px;
+  color: #cbd5f5;
+  margin-top: 6px;
+}
+
+.mb-empty {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ===============================
+   FORM
+================================ */
+
+.mb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mb-field label {
+  font-size: 12px;
+  color: #cbd5f5;
+}
+
+.mb-field input,
+.mb-field textarea,
+.mb-field select {
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: #f8fafc;
+  font-size: 13px;
+}
+
+.mb-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.mb-primary-btn {
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    rgb(236, 72, 153),
+    rgb(244, 114, 182)
+  );
+}
+
+/* ===============================
+   GRID
+================================ */
+
+.mb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.mb-memory-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.mb-memory-card:hover {
+  transform: translateY(-3px);
+}
+
+.mb-memory-image-wrap {
+  height: 140px;
+  background: #020617;
+}
+
+.mb-memory-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mb-no-image {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.mb-memory-body {
+  padding: 10px;
+}
+
+.mb-memory-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.mb-memory-meta {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.mb-memory-loc {
+  margin-left: 4px;
+}
+
+/* ===============================
+   CHIPS / TAGS
+================================ */
+
+.mb-chip {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-top: 6px;
+}
+
+.mb-chip-mood-happy { background: rgba(34,197,94,0.25); }
+.mb-chip-mood-romantic { background: rgba(236,72,153,0.25); }
+.mb-chip-mood-silly { background: rgba(250,204,21,0.25); }
+.mb-chip-mood-calm { background: rgba(56,189,248,0.25); }
+.mb-chip-mood-emotional { background: rgba(168,85,247,0.25); }
+
+.mb-tag-pill {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(148,163,184,0.2);
+}
+
+/* ===============================
+   MODAL
+================================ */
+
+.mb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.mb-modal {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 18px;
+  width: min(900px, 92%);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.mb-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.mb-modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mb-modal-image-section {
+  background: #020617;
+}
+
+.mb-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mb-modal-info {
+  padding: 20px;
+}
+
+.mb-modal-title {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.mb-modal-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.mb-modal-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.mb-modal-desc {
+  font-size: 14px;
+  color: #e5e7eb;
+  line-height: 1.5;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .memory-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mb-modal-content {
+    grid-template-columns: 1fr;
+  }
+}
+.mb-field {
+  min-width: 0;
+}
+
+.mb-field input,
+.mb-field textarea,
+.mb-field select {
+  width: 100%;
+  box-sizing: border-box;
+}

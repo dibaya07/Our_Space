@@ -1,0 +1,122 @@
+import axios from "axios";
+
+const axiosClient = axios.create({
+  // Point default baseURL to the local server. If you set VITE_API_BASE_URL in
+  // your environment, that will take precedence (useful for production).
+  // Default to the server API root. Include `/api` so client calls like
+  // `/couple` resolve to `http://localhost:5000/api/couple` which matches
+  // the Express routes defined on the server.
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
+  withCredentials: false, // allow cookies if backend uses them
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Attach auth token to every request
+axiosClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("auth_token");
+
+    // 🔍 DEBUG LOG (IMPORTANT)
+    console.log(
+      "[axiosClient] Request:",
+      config.method?.toUpperCase(),
+      config.url,
+      "token:",
+      token ? "FOUND" : "NOT FOUND"
+    );
+
+    // Allow auth routes without token
+    const url = (config.url || "").toString();
+    if (!token && (url.startsWith("/auth") || url.startsWith("auth"))) {
+      return config;
+    }
+
+    // If token exists, attach it
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      // 🔍 CONFIRM HEADER ATTACHMENT
+      console.log("[axiosClient] Authorization header set:", config.headers.Authorization);
+      console.log(
+        "[axiosClient] Attaching Authorization header:",
+        config.headers.Authorization
+      );
+    } else {
+      // Block write operations if not logged in
+      const method = (config.method || "get").toLowerCase();
+      if (method !== "get" && method !== "head") {
+        window.dispatchEvent(
+          new CustomEvent("readonly-attempt", {
+            detail: {
+              method: method.toUpperCase(),
+              url: config.url,
+            },
+          })
+        );
+
+        return Promise.reject({
+          message: "Read-only mode: login required",
+          status: 403,
+        });
+      }
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+
+// Handle responses and errors
+axiosClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // If token expired — optional refresh flow
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        // call refresh-token API (if backend supports it)
+        const res = await axiosClient.post("/auth/refresh");
+        const newToken = res.data?.token;
+
+        if (newToken) {
+          localStorage.setItem("auth_token", newToken);
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          return axiosClient(originalRequest);
+        }
+      } catch (refreshError) {
+        console.error("Session expired — please log in again");
+        localStorage.removeItem("auth_token");
+        // Prevent infinite reload loop
+        if (window.location.pathname !== "/login") {
+          window.location.href = "/login";
+        }
+      }
+    }
+    // If server responds with 403, dispatch readonly event so UI can show banner
+    try {
+      if (error.response?.status === 403) {
+        if (typeof window !== "undefined" && window?.dispatchEvent) {
+          const detail = {
+            status: 403,
+            message: error.response?.data?.message || "Forbidden",
+            url: originalRequest?.url,
+            method: (originalRequest?.method || "").toUpperCase(),
+          };
+          window.dispatchEvent(new CustomEvent("readonly-attempt", { detail }));
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // Other errors
+    return Promise.reject(error.response?.data || error);
+  }
+);
+
+export default axiosClient;

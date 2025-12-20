@@ -1,0 +1,204 @@
+/* Fullscreen wrapper with background image */
+
+/* Centered wrapper for login card (fixes overlaying layout) */
+.login-centered-wrapper {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* Left side text */
+.romantic-intro {
+  flex: 1.1;
+  color: #fbe6ff;
+}
+
+.romantic-title {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  text-shadow: 0 0 18px rgba(255, 182, 255, 0.35);
+}
+
+.romantic-title span {
+  color: #ff7bcf;
+}
+
+.romantic-tagline {
+  max-width: 420px;
+  font-size: 15px;
+  opacity: 0.88;
+}
+
+/* Glass login card */
+.romantic-card {
+  flex: 0 0 360px;
+  background: rgba(14, 6, 35, 0.6);
+  border-radius: 20px;
+  padding: 26px 26px 22px;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 165, 230, 0.25);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+  color: #ffe9ff;
+  display: flex;
+  flex-direction: column;
+  animation: cardIn 0.7s ease-out;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-title {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.card-subtitle {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #ffd4ff;
+}
+
+.field input {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 184, 255, 0.4);
+  padding: 10px 12px;
+  font-size: 14px;
+  background: rgba(7, 0, 31, 0.7);
+  color: #fff;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.field input::placeholder {
+  color: rgba(255, 220, 255, 0.6);
+}
+
+.field input:focus {
+  background: rgba(18, 5, 55, 0.9);
+  border-color: #ff91e4;
+  box-shadow: 0 0 0 1px rgba(255, 144, 228, 0.6);
+}
+
+/* Remember + forgot row */
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0 14px;
+  font-size: 12px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.remember input {
+  accent-color: #ff86d0;
+}
+
+/* Buttons */
+.primary-btn {
+  margin-top: 4px;
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  padding: 11px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #ff5bb6, #ff7b7c, #ffb56b);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(255, 120, 200, 0.7);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(255, 140, 215, 0.9);
+  filter: brightness(1.03);
+}
+
+.primary-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Text links */
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #ffd3ff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.card-footer {
+  margin-top: 14px;
+  font-size: 13px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.link-accent {
+  color: #ff96ea;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link-accent:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .romantic-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 26px;
+  }
+
+  .romantic-intro {
+    order: 2;
+  }
+
+  .romantic-tagline {
+    margin: 0 auto;
+  }
+
+  .romantic-card {
+    order: 1;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}

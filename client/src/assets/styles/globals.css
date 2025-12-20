@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import project CSS variables (if any) */
+@import "./variables.css";
+
+/* You can add global custom styles below */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------
+   Base Reset & Smooth UI
+-------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+/* Remove selection highlights on buttons + images */
+button, img {
+  user-select: none;
+}
+
+/* -------------------------------------------------------
+   Scrollbar (Soft Pink Theme)
+-------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff82b2a6;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff398f;
+}
+
+/* -------------------------------------------------------
+   Typography helpers
+-------------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  @apply font-semibold tracking-tight;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ff5da2, #ff9acb, #ffc4e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* -------------------------------------------------------
+   Card Designs
+-------------------------------------------------------- */
+.card {
+  @apply rounded-2xl shadow-md bg-white dark:bg-gray-800 border border-gray-100/40 dark:border-gray-700/40;
+}
+
+/* Hero / Glass Card */
+.glass {
+  @apply bg-white/20 dark:bg-gray-800/20 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-gray-700/30 shadow-xl;
+}
+
+/* -------------------------------------------------------
+   Animation Helpers
+-------------------------------------------------------- */
+.fade-in {
+  animation: fadeIn 0.35s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scale-in {
+  animation: scaleIn 0.25s ease-out;
+}
+@keyframes scaleIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Page transition (optional) */
+.page-enter {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* -------------------------------------------------------
+   Buttons Global Hover Style (smooth)
+-------------------------------------------------------- */
+button,
+a,
+.btn {
+  transition: all 0.18s ease;
+}
+button:active,
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* -------------------------------------------------------
+   Form Helpers
+-------------------------------------------------------- */
+input, textarea, select {
+  @apply focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-500;
+}
+
+/* Disable ugly autofill colors */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  transition: background-color 10000s ease-in-out 0s;
+}
+
+/* -------------------------------------------------------
+   Layout Helpers
+-------------------------------------------------------- */
+.section {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 py-6;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* -------------------------------------------------------
+   Toast / Modal compatibility global z-index system
+-------------------------------------------------------- */
+.z-toast { z-index: 2000; }
+.z-modal { z-index: 1600; }
+.z-overlay { z-index: 1500; }
+.z-layout { z-index: 1200; }
