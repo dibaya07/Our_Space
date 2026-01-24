@@ -125,27 +125,33 @@ export default function MainLayout() {
       <div className="main-column">
         <header className="topbar">
           <div className="topbar-left">
+            {/* Hamburger menu for mobile */}
+            <button
+              className="mobile-menu-btn"
+              aria-label="Open navigation menu"
+              onClick={() => setIsDrawerOpen(true)}
+            >
+              <span className="sr-only">Open menu</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
             <div className="desktop-welcome desktop-welcome-center">
-             <h2 className="welcome-text">
-  Welcome back
-  {user?.name
-    ? `, ${user.name
-        .split(" ")[0]
-        .charAt(0)
-        .toUpperCase() + user.name.split(" ")[0].slice(1)}`
-    : " Lovely Couple"} ✨
-</h2>
-
+              <h2 className="welcome-text">
+                Welcome back
+                {user?.name
+                  ? `, ${user.name
+                      .split(" ")[0]
+                      .charAt(0)
+                      .toUpperCase() + user.name.split(" ")[0].slice(1)}`
+                  : " Lovely Couple"} ✨
+              </h2>
               <p className="welcome-sub">
                 Track love notes, moods, promises and more in one cozy place.
               </p>
             </div>
           </div>
-
           <div className="topbar-right">
             {user ? (
               <div className="pill" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-               
                 <button
                   className="logout-btn"
                   onClick={() => logout?.()}
@@ -156,14 +162,12 @@ export default function MainLayout() {
               </div>
             ) : (
               <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-               <button className="auth-btn auth-btn-login" onClick={goToLogin}>
-  Login
-</button>
-
-<button className="auth-btn auth-btn-login" onClick={goToRegister}>
-  Register
-</button>
-
+                <button className="auth-btn auth-btn-login" onClick={goToLogin}>
+                  Login
+                </button>
+                <button className="auth-btn auth-btn-login" onClick={goToRegister}>
+                  Register
+                </button>
               </div>
             )}
           </div>

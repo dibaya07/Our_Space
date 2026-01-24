@@ -363,3 +363,21 @@ body{
     font-size: 12px;
   }
 }
+
+  /* Hide hamburger menu on desktop */
+  .mobile-menu-btn {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .mobile-menu-btn {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      font-size: 28px;
+      margin-right: 12px;
+      cursor: pointer;
+      color: #fff;
+    }
+  }
